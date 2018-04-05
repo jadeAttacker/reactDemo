@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>task</title>
+	<link rel="stylesheet" href="nin.css" type="text/css" />
+</head>
+<body>
+    <div>
+        <form>
+
+              <strong>起始日期：</strong> <input type="text" name="" class="myDate" placeholder="请输入时间"><br><!-- <input type="date" name="" value="2017-08-14" class="myDate" ><br> -->
+              <strong>结束日期：</strong> <input type="text" name="" class="myDate" placeholder="请输入时间"><br><!-- <input type="date" name="" value="2017-08-14" class="myDate"><br> -->
+              <strong>时长：</strong><input type="text" name="" class="myDuration" disabled="true">
+        </form>
+     </div>
+    <script type="text/javascript">
+          window.onload=function(){
+               var oDate=document.getElementsByClassName('myDate');
+               var oDuration=document.getElementsByClassName("myDuration");//获取元素
+
+               var startDate=getToday();
+               var endDate=getToday();//保存起始日期和到期日期用于计算，默认为当前日期
+
+               var re=/^(\d{4})-(\d{2})-(\d{2})$/;//正则检测输入是否合法
+               for(var i = 0;i<oDate.length; i++) {//当文本框获得焦点时，变为日期类型，出现日期选择
+                    oDate[i].onfocus=function(){
+                       this.type="date";
+                    }
+               }
+               oDate[0].onchange=function(){//当选择的日期改变时，判断是否合法，合法后保存起始日期，结束日期不能早于起始日期，并计算时间长。
+               	   if(re.test(this.value)){
+                        startDate=this.value;
+                        oDate[1].min=startDate;
+                        oDuration[0].value=duration(startDate,endDate);
+                     }else{
+                     	  alert("请输入正确日期");
+                     }
+               }
+               oDate[1].onchange=function(){//同上
+               	   if(re.test(this.value)){
+                        endDate=this.value;
+                        oDate[0].max=endDate;
+                        oDuration[0].value=duration(startDate,endDate);
+                     }else{
+                     	alert("请输入正确日期");
+                     }
+               }
+               function duration(date1,date2){//计算租房时间的函数，返回计算出来的值
+                    var str="";
+               	    var startArray=date1.split("-");//将2017-08-14分割为2017，08，14.保存在数组中，分别对年月日进行计算
+               	    var endArray=date2.split("-");
+                    var halfMonth=null;
+                    var days=dayNum(startArray[1]);
+                    //根据月份不同，判断多少天算半月
+                    if(days==31){//31天的月份，16天算半月
+                           halfMonth=16;
+                    }else if (days==30) {
+                           halfMonth=15;
+                    }else{
+                           halfMonth=14;
+                    }
+                    //当月租，当月走
+                    if(endArray[0]==startArray[0]&&endArray[1]==startArray[1]){
+                        
+                        var d=parseInt(endArray[2])-startArray[2]+1;//一共租的天数
+                        var str=(Math.ceil(d/halfMonth))/2.0+"个月";
+
+                    }else{//不是当月租，当月走时
+                        var y=(endArray[0]-startArray[0])*12+parseInt(endArray[1])-startArray[1]-1;//整月个数
+                        
+                        var d=dayNum(startArray[1])-startArray[2]+parseInt(endArray[2])+1;//两头的天数,1-62之间
+                       
+                        if(d<=days){
+                            str=y+(Math.ceil(d/halfMonth))/2.0+"个月";
+                        }else{
+                            str=y+1+(Math.ceil((d-days)/halfMonth))/2.0+"个月";
+                        }
+                      
+                    }
+                    return str;
+               }
+               /*function init(opt1,opt2){//初始化日期为当前日期，并设置日期选择范围
+                   opt1.value=getToday();//2017-08-14
+                   opt2.value=getToday();
+                    opt1.max=getToday();
+                   opt2.min=getToday();
+
+               }*/
+               function getToday(){//获取当前的年月日，设为初始值
+                  var d = new Date();
+                  var str = d.getFullYear()+"-"+getFullNum(d.getMonth()+1)+"-"+getFullNum(d.getDate());
+                  //alert(str);
+                  return str;
+               }
+               function getFullNum(num){//获取的日期是2017-8-14，将8转化成08，转化为2017-08-14，保持格式一致
+                    if(num<10){
+                    	return "0"+num;
+                    }else{
+                    	return num;
+                    }
+               }
+               function dayNum(month){//判断每月多少天（为了确定多少天算半月）
+               	   var days=null;
+           	         if (month==1||month==3||month==5||month==7||month==8||month==10||month==12) {//31天
+                                  days=31;
+           	    	 }else if(month==2){//需要判断平年和闰年，暂时省略，默认为28天
+                                  days=28;
+           	    	 }else{//30天
+                                  days=30;
+           	    	 }
+           	       return days;
+               }
+
+
+          }
+   
+
+    </script>
+</body>
+</html>

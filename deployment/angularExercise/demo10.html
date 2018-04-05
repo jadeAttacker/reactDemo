@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>angular事件</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8"/>
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+</head>
+<body ng-app="App">
+  <div  ng-controller="myController">
+
+        <ul>
+            <li>1.<input type="button" value="单击" ng-click="siClick()"></li>
+    	      <li>2.<input type="button" value="双击" ng-dblclick="dbClick()"></li>
+            <li><input type="button" ng-keyup="up()" value="鼠标抬起"></li>
+            <li><input type="text" ng-blur="blur()" value="失去焦点测试"></li>
+        </ul>
+
+        <ul>
+            <li ng-repeat="item in items" ng-switch>{{item}}</li>
+        </ul>
+        <ul >
+            <li ng-repeat="item in items" ng-switch on="item"><span ng-switch-when="css">{{item}}</span></li>
+        </ul>
+    </div>
+</body>
+<script>
+  var mod=angular.module("App",[]);
+  mod.controller("myController",['$scope',function($scope){
+       $scope.siClick=function(){
+       	    alert("单击！")
+       },
+       $scope.dbClick=function(){
+       	   alert("双击！！！")
+       },
+       $scope.up=function(){
+           alert("鼠标抬起！");
+       },
+       $scope.blur=function(){
+           alert("失去焦点！");
+       },
+       $scope.items=["js","html","css"]
+   
+  }])
+
+
+</script>
+</html>

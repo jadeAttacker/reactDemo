@@ -1,0 +1,53 @@
+#container{
+	width: 800px;
+	height: 600px;
+	background-color: black; 
+	margin: 50px auto;
+	position: relative;
+}
+#startGame{
+	position: absolute;
+	height: 20%
+	width:10%;
+	background-color: red;
+	top: 280px;
+	left:50%;
+}
+#gameInterface{
+	height:100%;
+	width: 100%;
+	display: none;
+	position:relative;
+}
+#score{
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #FFFFFF;
+}
+#beeSet{	
+	position: absolute; 
+	padding: 0;
+}
+.bee{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float:left;
+	width: 30px;
+	height: 20px;
+}
+#plane{
+	position: absolute;
+	bottom: 0;
+	width: 30px;
+	height: 42px;
+	/* background: url("./"); */
+	/* left: 48%;  */
+}
+.bullet{
+	background-color: white;
+	width: 1px;
+	height: 5px;
+	position: absolute;
+}

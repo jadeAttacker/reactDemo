@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无缝切换</title>
+	<style type="text/css">
+	
+       #container{
+          margin: 20px;
+       }
+       #container div{
+       	  position: relative;
+          margin: 20px;
+          width: 280px;
+          height: 60px;
+          overflow: hidden;
+
+       }
+       #container ul{
+       
+       	position: absolute;
+       	left: 0px;
+       	padding: 0;
+       	margin: 0;
+       	height: 60px;	 
+       }
+       #container li{
+       	  list-style: none;
+       	  width: 60px;
+       	  height: 60px;
+       	  background-color: blue;
+       	  float:left;
+       	  margin: 0 10px 0 0;
+       }
+
+	</style>
+</head>
+<body>
+<center>
+   <div id="container">
+	   <input type="button" name="bBtn" value="切换" id="change">
+	   <div>
+	      <ul>
+	            <li>1</li>
+	            <li>2</li>
+	            <li>3</li>
+	            <li>4</li>
+	            <li>5</li>
+	      </ul>
+	   </div>
+	</div>
+</center>
+<script type="text/javascript">
+   var oContainer=document.getElementById("container");
+   var oUl=oContainer.getElementsByTagName('ul')[0];
+   var oLi=oContainer.getElementsByTagName('li');//引用，增加后自然会变化
+   var  oBtn=document.getElementById("change");
+   var size=oLi[0].offsetWidth+10;
+   var num=2;
+   var bBtn=true;
+   setUlSize();
+ 
+   
+   oBtn.onclick=function(){
+   	  if (bBtn) {
+	   	  	bBtn=false;
+	   	  	for (var i = 0; i<num;i++) {
+		   	  	var node=oUl.children[i].cloneNode(true);
+		   	  	oUl.appendChild(node);
+		   	  	setUlSize();
+            }
+		   	   startMove(oUl,{left:-num*size},deleteNode);
+		   	   bBtn=true;
+   	  }
+   	  
+
+   }
+   function deleteNode(){
+       for (var i = 0; i<num;i++) {
+   	  	oUl.removeChild(oLi[0]);
+   	  }
+   	  setUlSize();
+   	  oUl.style.left=0;
+   }
+   function setUlSize(){
+   	  oUl.style.width=oLi.length*size+"px";
+   }
+   function startMove(opt,arg,callback){
+                var speed=5;
+	         	var timer=setInterval(function(){
+	                var currentPosition=opt.offsetLeft;
+	                if(currentPosition==arg.left){
+	                	clearInterval(timer);
+	                	callback();
+	                }else{
+	                    opt.style.left=currentPosition-2+"px";
+	                }
+	                
+	            },1);    
+   }
+
+
+</script>
+
+
+</div>
+</body>
+</html>

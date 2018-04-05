@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #contenter{
+        margin: auto 250px;
+    }
+    #bigPhoto{
+        width:620px;
+        float: left;
+    }
+    #smallPhotos{
+        width: 100px;
+        float: left;
+    }
+    ul,li{
+        list-style: none;
+    }
+    #prve{
+        background: url(icon_prve2.jpg);
+        height: 20px;
+        width: 40px;
+        margin-left: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    #next{
+        background: url(icon_next2.jpg);
+        height: 20px;
+        width: 40px;
+        margin-left: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+</style>
+<body>
+<div id="contenter">
+   <div id="bigPhoto">
+         <img id="bigPhotoSrc" src="photo01.jpg" width="620" height="450" border="0" alt="hehe">
+   </div>
+   <div id="smallPhotos">
+         <span id="prve"></span>
+         <ul id="smallPhotosList"></ul>
+         <span id="next"></span>
+   </div>
+
+</div>
+<script>
+
+    eg={};
+    eg.currentBigPhoto=0;
+    eg.groupNumber=1;
+    eg.groupSize=6;
+    eg.$=function (id) {
+        return document.getElementById(id);
+    };
+    eg.bigImg=eg.$("bigPhotoSrc");
+    eg.prve=eg.$("prve");
+    eg.next=eg.$("next");
+    eg.smallPhotosList=eg.$("smallPhotosList");
+    eg.data=[
+        ["thumb01.jpg","photo01.jpg"],
+        ["thumb02.jpg","photo02.jpg"],
+        ["thumb03.jpg","photo03.jpg"],
+        ["thumb04.jpg","photo04.jpg"],
+        ["thumb05.jpg","photo05.jpg"],
+        ["thumb06.jpg","photo06.jpg"],
+        ["thumb07.jpg","photo07.jpg"],
+
+        ["thumb01.jpg","photo01.jpg"],
+        ["thumb02.jpg","photo02.jpg"],
+        ["thumb03.jpg","photo03.jpg"],
+        ["thumb04.jpg","photo04.jpg"],
+        ["thumb05.jpg","photo05.jpg"],
+        ["thumb06.jpg","photo06.jpg"],
+        ["thumb07.jpg","photo07.jpg"]
+    ];
+    eg.showGroupOrder=function(group){
+        var start=(group-1)*6;
+        var end=group*6;
+        eg.currentBigPhoto=start;
+        eg.firstBigPhoto=start;
+        eg.lastBigphoto=end;
+        for (var i=start;i<end&&i<eg.data.length;i++){
+            var li= document.createElement("li");
+            console.log(i);
+            li.innerHTML='<img src="'+eg.data[i][0]+'" id="thumb0'+i+'" width="80" height="40"/>';
+            eg.smallPhotosList.appendChild(li);
+            (function(i) {
+                li.onclick = function () {
+                    console.log("123");
+                    eg.currentBigPhoto=i;
+                    eg.showBig(i);
+                }
+            })(i)
+        }
+       eg.showBig(start);
+
+    };
+    document.onkeydown=function (event) {
+        if (event.keyCode==37){
+            if (eg.currentBigPhoto>0){
+                if (eg.currentBigPhoto==eg.firstBigPhoto){
+                    eg.clear();
+                    eg.showGroupOrder(--eg.groupNumber);
+                    eg.currentBigPhoto=eg.lastBigphoto-1;
+                    eg.showBig(eg.currentBigPhoto);
+                }
+                else {
+                    console.log("37");
+                   eg.showBig(--eg.currentBigPhoto)
+                }
+            }
+
+        }
+        if (event.keyCode==39){
+            if(eg.currentBigPhoto<13){
+                if (eg.currentBigPhoto+1==eg.lastBigphoto){
+                    eg.clear();
+                    eg.showGroupOrder(++eg.groupNumber);
+                }else {
+                    console.log("39");
+                    eg.showBig(++eg.currentBigPhoto);
+                }
+            }
+        }
+    };
+    eg.showBig=function (first) {
+        eg.bigImg.src=eg.data[first][1];
+    };
+    eg.next.onclick=function () {
+        if (eg.groupNumber<3){
+            eg.clear();
+            eg.showGroupOrder(++eg.groupNumber);
+        }
+    };
+    eg.prve.onclick=function () {
+        if(eg.groupNumber>1){
+            eg.clear();
+            eg.showGroupOrder(--eg.groupNumber);
+        }
+    };
+    eg.init=function () {
+        eg.showGroupOrder(eg.groupNumber);
+    };
+    eg.clear=function () {
+        var number=eg.smallPhotosList.childNodes.length;
+        for(var t=0;t<number ;t++){
+            eg.smallPhotosList.removeChild( eg.smallPhotosList.childNodes[0]);
+        }
+    };
+    eg.init();
+
+</script>
+</body>
+</html>

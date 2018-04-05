@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>示例</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8"/>
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+	<style>
+        .active{
+        	 background-color:yellow;
+        }
+
+
+	</style>
+</head>
+<body ng-app="tab" >
+    <div ng-controller="tabController">
+        <nav>	
+        <!-- ng-class的作用 -->
+	      	<a href="javasceipr:;" ng-class={active:type=="country"} ng-click="switch('country')">国内新闻</a>
+	        <a href="javasceipr:;" ng-class={active:type=="foreign"} ng-click="switch('foreign')">国际新闻</a>
+	     	<a  href="javasceipr:;" ng-class={active:type=="province"} ng-click="switch('province')">省内新闻</a>
+	      	<a  href="javasceipr:;" ng-class={active:type=="city"} ng-click="switch('city')">县城新闻</a>
+       </nav>
+       <div  ng-switch on="type"><!-- 根据type的值决定 -->
+	       <section ng-switch-when="country">
+	           <ul>
+		           <li>国内新闻</li>
+		           <li>国内新闻</li>
+		           <li>国内新闻</li>
+		           <li>国内新闻</li>
+	           </ul>  <!-- 当type为country时才展示 也适用于循环。当item为css时，才往li内填充内容。    这里是往section内加内容，都是内部内容，不干扰该标签！！！-->
+	       </section>
+	        <section ng-switch-when="foreign">
+	           <ul>
+		           <li>国际新闻</li>
+		           <li>国际新闻</li>
+		           <li>国际新闻</li>
+		           <li>国际新闻</li>
+	           </ul>
+	       </section>
+	        <section ng-switch-when="province">
+	           <ul>
+		           <li>省内新闻</li>
+		           <li>省内新闻</li>
+		           <li>省内新闻</li>
+		           <li>省内新闻</li>
+	           </ul>
+	       </section>
+	        <section ng-switch-when="city">
+		        <ul>
+		           <li>县城新闻</li>
+		           <li>县城新闻</li>
+		           <li>县城新闻</li>
+		           <li>县城新闻</li>
+	           </ul>
+            </section>
+       </div>
+    </div>
+
+    
+</body>
+<script>
+
+     var tab=angular.module("tab",[]);
+     tab.controller("tabController",["$scope",function ($scope) {
+     	  $scope.type="country";
+     	  $scope.switch=function(type){
+     	  	$scope.type=type;
+     	  }
+     }])
+
+
+
+</script>
+</html>

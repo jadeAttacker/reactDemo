@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>备忘录</title>
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8"/>
+	<style>
+        .oUl{
+        	list-style-type: none;
+        }
+         
+	</style>
+</head>
+<body ng-app="App">
+   <center ng-controller="myController">
+	      <form ng-submit="add()">
+	           <input type="text" ng-model="task"><!-- 双向绑定 -->
+	      </form>
+	      <div>
+	          <ul class="oUl" >
+	               <li ng-repeat="task in tasks"><!-- 提供了$index变量 -->
+	                     <input type="checkbox" ng-checked="task.btn" ng-click="done($index)">
+	                     <label>{{task.text}}</label>
+	                     <input type="button" value="删除"  ng-click="del(tasks,$index)">
+	               </li>
+	          </ul>
+	          <h3>已完成</h3><hr>
+	          <ul class="oUl" >
+	               <li ng-repeat="task in doneTasks">
+	                     <input type="checkbox" ng-checked="task.btn" ng-click="do($index)" >
+	                     <label>{{task.text}}</label>
+	                     <input type="button" value="删除" ng-click="del(doneTasks,$index)">
+	               </li>
+	          </ul>
+	          <span>{{}}item left</span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span>click all</span>
+	      </div>
+   </center>
+   <script>
+         var app=angular.module("App",[]);
+         app.controller("myController",["$scope",function($scope){
+         	 $scope.tasks=new  Array();
+         	 $scope.doneTasks=new Array();
+         	 $scope.add=function(){
+         	 	$scope.tasks.push({text:$scope.task,btn:false});
+         	 	$scope.task="";
+         	 }
+         	 $scope.do=function(index){
+                var item=$scope.doneTasks.splice(index,1)[0];
+                item.btn=false;
+                $scope.tasks.push(item)
+         	 }
+         	 $scope.done=function(index){//从未做数组中删去该数据，添加到已做数组
+                 var item=$scope.tasks.splice(index,1)[0]//只有一项的数组，删除
+                 item.btn=true
+                 $scope.doneTasks.push(item)
+         	 }
+         	 $scope.del=function(arr,index){
+                 arr.splice(index,1)
+         	 }
+
+         }])
+
+   </script>
+
+</body>
+</html>

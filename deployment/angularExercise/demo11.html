@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>作用域  controller 可以嵌套 App不能嵌套</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8"/>
+    <script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+</head>
+<body ng-app="App" ng-init="name='顺治'"><!-- 根作用域 -->
+     <div class="parent" ng-controller="myController"><!-- 子作用域1 -->
+          <h1>{{name}}</h1>
+         <div class="child" ng-controller="childController"><!-- 子作用域2 -->
+              <h2>{{name}}</h2>
+
+         </div>
+     </div>
+
+</body>
+<script>
+      //一个视图  2个模块  两个控制器在  这是两个不同的模块，嵌套关系，和根作用域也是嵌套关系
+       var model=angular.module("App",[]);
+       model.controller("myController",['$scope',function($scope){
+             /*  $scope.name="康熙";
+             这个model是总的模型对象。分配不同的scope。
+*/
+
+
+       }])
+       model.controller("childController",['$scope',function($scope){
+       	      $scope.name="用户只能";
+
+       }])
+
+</script>
+</html>

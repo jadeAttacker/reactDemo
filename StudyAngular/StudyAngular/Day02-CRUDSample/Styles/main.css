@@ -1,0 +1,132 @@
+﻿
+/*Body*/
+body {
+    font: normal 10px Verdana, Arial, sans-serif;
+}
+
+/*layout*/
+.application-root {
+    width: 100%;
+    height: 100%;
+}
+
+.application-header {
+    width: 100%;
+    height: 10%;
+    background-color: whitesmoke;
+}
+
+.application-content {
+    width: 100%;
+    height: 400px;
+    background-color: forestgreen;
+}
+
+/*headings / controls */
+.application-title {
+    color: black;
+    font: bold 20px;
+    text-align: center;
+    vertical-align: central;
+}
+
+.page-title {
+    color: black;
+    font: bold 15px;
+    text-align: left;
+}
+
+.searchbar {
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+}
+
+.field-label {
+    width: 800px;
+    font-size: 12px;
+}
+
+.field-control {
+    width: 40%;
+}
+
+.field-message {
+    width: 30%;
+}
+
+/*.items-listing th{
+    background-color:green;
+}
+
+.items-listing tr:nth-child(odd){
+    background-color:#eee;
+}
+
+.items-listing tr:nth-child(even){
+    background-color:#fff;
+}*/
+
+/*http://stackoverflow.com/questions/339923/set-cellpadding-and-cellspacing-in-css*/
+table.items-listing {
+    width:100%;
+    border-collapse: collapse; /* 'cellspacing' equivalent */
+    font-size: 14px;
+    border:1px solid #000000;
+}
+
+table.items-listing th {
+    padding: 3px; /* 'cellpadding' equivalent */
+    border: 1px solid #000000;
+}
+
+table.items-listing td {
+    padding: 3px; /* 'cellpadding' equivalent */
+    border: 1px solid #000000;
+}
+
+table.items-listing th{
+    background-color:#aaa;
+}
+
+table.items-listing tr:nth-child(odd){
+    background-color:#eee;
+}
+
+table.items-listing tr:nth-child(even){
+    background-color:#fff;
+}
+
+.entity-field-row {
+/*width:70%;*/
+padding: 2px 2px 5px 2px;
+}
+
+ul.entity-tabular-fields {
+    list-style: none;
+    width:100%;
+}
+
+ul.entity-tabular-fields li {
+  /*list-style: none;*/
+    width:100%;
+}
+
+
+ul.entity-tabular-fields li {
+    padding: 5px 5px;
+}
+
+ul.entity-tabular-fields li label {
+    float: left;
+    width: 100px;
+    margin-top: 3px;
+    font-size:12px;
+}
+
+ul.entity-tabular-fields li span input {
+    /*border: 1px solid #999;*/
+    padding: 3px;
+    width: 180px;
+}
+

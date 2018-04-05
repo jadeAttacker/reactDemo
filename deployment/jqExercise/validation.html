@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>验证插件</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="./jquery.validate.js"></script>
+    <script type="text/javascript" src="./jquery.metadata.js"></script>
+    <script type="text/javascript" src="./jquery.validate.messages_cn.js"></script>
+    <style type="text/css">
+          *{
+          	font-family: Verdana;font-size: 96%;
+          }
+          label{width: 10em;float: left;}/* 设为浮动，转化为块状。设置统一宽度 */
+          label.error{float: none; color: red;padding-left: .5em;vertical-align: top;}
+          p{clear: both;}
+          .submit{margin-left: 12em;}
+          em.error{background-color: red;font-weight: bold;padding-right:1em;}
+          em.sucess{background-color: green;font-weight: bold;padding-right:1em;}
+
+    </style>
+</head>
+<body>
+     <form id="commentForm">
+           <fieldset>
+              <legend>表单验证</legend>
+              <p>
+                  <label for="cusername">姓名:</label><em>*</em>
+                  <input id="cusername"  type="text" name="username" size="25" >
+              </p>
+              <p>
+                  <label for="cemail">电子邮件:</label><em>*</em>
+                  <input id="cemail" type="text" name="email" size="25" >
+              </p>
+              <p>
+                  <label for="curl">网址:</label><em>&nbsp</em>
+                  <input id="curl" type="text" name="url" size="25"  >
+              </p>
+              <p>
+                  <label>你的评论:</label><em>*</em>
+                  <textarea id="comment" name="comment" cols="22" ></textarea>
+              </p>
+              <p>
+                  <input type="submit" class="submit"  value="提交" name="">
+              </p>
+           </fieldset>
+     </form>
+     <script type="text/javascript">
+        $(function(){
+        	
+            $("#commentForm").validate({
+              /* 按name进行验证   rules和messages两个部分*/
+               rules:{
+	                username:{
+	                	required:true,
+	                	minlength:2,
+	                },
+                    email:{
+                    	required:true,
+                    	email:true
+                    },
+                     url:{
+                     	 required:true,
+                     	 url:true
+                     },
+                     comment:"required"
+               },
+               messages:{
+               	   username:{
+               	   	  required:"请输入姓名",
+               	   	  minlength:"请至少输入两个字符"
+               	   },
+               	   email:{
+               	   	  required:"请输入电子邮件",
+               	   	  minlength:"请检查电子邮件的格式"
+               	   }
+               },
+               errorElement:"em",
+               success:function(label){
+               	    label.text(" ").addClass("success")
+
+               }
+            });
+           /* var x=[0,0,0];
+            var y=[0,0,0];
+            var w=[[0,3/8,-1/4],
+                   [-4/11,0,1/11],
+                   [-1/2,-1/4,0]]
+            for (var i = 10; i >= 0; i--) {
+            	 	y[0]=(w[0][0]*x[0]+w[0][1]*x[1]+w[0][2]*x[2])+2.5;
+           			 y[1]=(w[1][0]*x[0]+w[1][1]*x[1]+w[1][2]*x[2])+3.0;
+		            y[2]=(w[2][0]*x[0]+w[2][1]*x[1]+w[2][2]*x[2])+3.0;
+		             x[0]=y[0],  x[1]=y[1],  x[2]=y[2],
+                   alert(y);
+            }*/
+           
+          
+        })
+     </script>
+     
+</body>
+</html>

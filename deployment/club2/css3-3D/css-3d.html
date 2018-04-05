@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css-3D</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<style type="text/css">
+     .container{/*200指的仅仅是内容  */
+     	height: 200px;
+     	width: 200px;
+     	padding: 200px;
+     	margin: 0 auto;
+     	-webkit-perspective:800px;/*？？？？？？？？？？？  */
+     	border: 1px solid black;
+     
+     }
+     .container:hover .box{
+     	-webkit-transform:  translateZ(-100px) rotateX(180deg);/*绕X旋转180度  */
+     }
+     .box {
+     	 width: 200px;
+     	 height: 200px;
+     	 position: relative;
+     	 transition: 10s all;
+     	 -webkit-transform-style: preserve-3d;/*设为3d样式 */
+     	 -webkit-transform: translateZ(-100px) rotateX(0deg);/*绕X旋转180度  */
+
+     }
+     .box div{
+     	 width: 200px;
+     	 height: 200px;
+     	 position: absolute;
+     	 font-size: 100px;
+     	 font-weight: bold;
+     	 text-align: center;
+     	 line-height: 200px;
+     	 color: #FFF;
+     }
+     .box div:nth-of-type(1){
+     	 background-color: yellow; 
+     	 -webkit-transform:translateZ(100px) ;
+     }
+     .box div:nth-of-type(2){/*顶部*/
+     	 background-color: blue; 
+     	 -webkit-transform-origin:top;
+     	 -webkit-transform: translateZ(100px) rotateX(-90deg); 
+
+     }
+     .box div:nth-of-type(3){/*背面*/
+     	 background-color: orange; 
+     	 -webkit-transform:translateZ(-100px) rotateX(180deg);
+     }
+     .box div:nth-of-type(4){/*底部*/
+     	 background-color: pink; 
+	 	  -webkit-transform-origin:bottom;
+	 	  -webkit-transform:translateZ(-100px) rotateX(-90deg); 
+     }
+     
+</style>
+<body>
+	<div class="container">
+	    <div class="box">
+	        <div>1</div>
+	        <div>2</div>
+	        <div>3</div>
+	        <div>4</div>
+
+	    </div>
+	</div>
+
+</body>
+</html>

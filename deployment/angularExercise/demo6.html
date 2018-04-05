@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>内置指令2</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+	<style>
+       .red{
+       	   color:red;
+       }
+       .blue{
+       	   color:blue;
+       }
+	</style>
+</head>
+<body ng-app="App">
+   <center ng-controller="myContro">
+	     <header ng-include="'header.html'"></header>
+	     <section>中间部分
+         <form>
+             <input type="text" ng-disabled="false" ><!-- disabled存在即禁用  不在乎取什么值。 --><br>
+             <input type="text"  value="123" readonly="true"><br>
+             爱好：<input type="checkbox" name="hobby" ng-checked="false"  value="1">台球
+                  <input type="checkbox" name="hobby"  value="2">足球<br>
+              <select>
+                  <option value="1">1</option>
+				 <option value="1">2</option> 
+				 <option value="1" selected>3</option> 
+				 <option value="1">4</option>
+				 <!-- 扩展与增强
+
+
+				 ng-selected
+				 ng-checked -->
+
+              </select>
+         </form>
+ 
+	     </section>
+	     <footer ng-include="'footer.html'"></footer>
+   </center>
+     
+    
+</body>
+<script> 
+     var module=angular.module("App",[]);
+     module.controller("myContro",['$scope',function($scope){
+             
+     }])
+
+
+</script>
+</html>

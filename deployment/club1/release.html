@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <title>微博发布</title>
+    <style type="text/css">
+        *{margin: 0;}
+        body{ front-size:12px; }
+        #container{width: 400px;height: 200px;margin: 20px auto;}
+        #container p {float: right;}
+        #container textarea{width: 400px;height: 100px;overflow: auto;border: 1px red solid}   
+        #container a{width: 50px;height: 30px;background-color: green;color: black;float: right;text-align: center;line-height: 30px;}
+        #container a.dis{background-color: gray}
+        #container span.red{color: red}
+        #container textarea.colorRed{background-color: red}
+    </style>
+</head>
+<body>
+<div id="container">
+    <p>新浪微博征求</p>
+    <textarea></textarea>
+    <a class="dis" href="javascript:void(0)">发布</a>
+</div>
+
+<script type="text/javascript">
+    window.onload=function(){
+        var oTextarea=document.getElementsByTagName("textarea")[0];
+        var oA=document.getElementsByTagName("a")[0];
+        var oP=document.getElementsByTagName('p')[0];
+        var num=0;
+        var timer=null;
+        var ie=!-[1,];
+        oTextarea.onfocus=function(){
+            if(num<=140){
+                    oP.innerHTML="您还可以输入<span>"+(140-num)+"</span>个字";
+                }
+        }
+        oTextarea.onblur=function(){
+            if (this.value=="") {oP.innerHTML="新浪微博征求";
+            }    
+        }
+    
+        oTextarea.oninput=function () {
+                    var oSpan=oP.getElementsByTagName("span")[0];
+                    num=Math.ceil(length(oTextarea.value)/2);
+                    if (this.value=="") {
+                         oP.innerHTML="您还可以输入<span>"+(140-num)+"</span>个字";
+                         oA.className="dis";
+                        
+                    }else{
+                        if(num>140){
+                              oP.innerHTML="您已经超了<span class='red'>"+(num-140)+"</span>个字";
+                              oA.className="dis";
+                        }else{
+                        oP.innerHTML="您还可以输入<span>"+(140-num)+"</span>个字";
+                    
+                            oA.className="";
+                        }
+                        
+                    }
+           }
+        oA.onclick=function(){
+            if(num==0||num>140){
+                var i=0
+                timer= setInterval(function (num) {
+                        var Btn=i%2;
+                        if(i==5){
+                            clearInterval(timer);
+                        }else{
+                             if(Btn){ 
+                                 oTextarea.className="colorRed";
+                             }else{
+                                 oTextarea.className="";
+                             }
+                        }
+                        i++;
+                     },100)
+
+            }else{
+                alert("发布成功！");
+            }
+        }
+        function length(str){
+             return String(str).replace(/[^\x00-\xff]/g,'aa').length;
+        }
+       
+
+    }
+</script>
+</body>
+</html

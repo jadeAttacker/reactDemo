@@ -1,0 +1,76 @@
+
+#header{/* 目的是自适应，保持最宽 */
+        /* background: url("../img/headerbg.png")    scroll 0 0 #FFFFFF; 默认重复，背景图片尺寸可选 */
+         height: 210px;
+       /*   border:1px solid #111222; */
+       }
+#header .back{
+	     margin:0 auto;
+         width:1000px;
+         height:110px;
+         background-color:blue;
+     }
+#header .hoslogo{
+	 background: url("../img/headerbg.png")    scroll 0 0 #FFFFFF; 
+     position: relative;
+     height: 105px;
+     width: 990px;
+     margin: 0 auto;
+     z-index: 100;
+   /*  background-color: orange;  */
+ }
+#header .logo img{
+         height: 105px;
+
+}
+#header .name img{
+         height: 55px;
+         margin:25px auto auto 50px;
+}
+
+
+#header .contWitch{
+     position: relative;
+     height: 105px;
+     width: 990px;
+     margin: 0 auto;
+     z-index: 100;
+     /* background-color: orange; */
+ }
+ #header .logo{
+    float: left; 
+    margin: 0 0 0 10px;
+    color: #FFF;
+   /*  line-height: 80px; */
+}
+
+
+/* #header #skin{
+     float: right;
+     width: 120px;
+     background-color: #CCC;
+     padding: 4px;对浮动的元素起作用，可以被子元素撑起来
+     margin: 10px;
+}
+#header #skin li{
+      float: left;
+      height: 15px;
+      width: 15px; 
+      margin-right: 5px;
+      background-image: url("../images/theme.gif");
+      text-indent: -9999px;
+      cursor: pointer;
+      overflow: hidden;
+}
+#header #skin li:nth-of-type(1){background-position: 0px 0px;}背景图起始位置，不是偏移量
+#header #skin li:nth-of-type(2){background-position: -100px 0px;}
+#header #skin li:nth-of-type(3){background-position: -80px 0px; }
+#header #skin li:nth-of-type(4){background-position: -60px 0px; }
+#header #skin li:nth-of-type(5){background-position: -40px 0px;}
+#header #skin li:nth-of-type(6){background-position: -20px 0px;}
+#header #skin li:nth-of-type(1).selected {background-position: 0px 15px;}
+#header #skin li:nth-of-type(2).selected {background-position: -100px 15px;}
+#header #skin li:nth-of-type(3).selected {background-position: -80px 15px; }
+#header #skin li:nth-of-type(4).selected {background-position: -60px 15px; }
+#header #skin li:nth-of-type(5).selected {background-position: -40px 15px;}
+#header #skin li:nth-of-type(6).selected {background-position: -20px 15px;} */

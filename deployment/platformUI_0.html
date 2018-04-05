@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数设置</title>
+    <style>
+        .container{margin: 0 auto; width: 600px;height:auto;background-color: #99ff54;}
+        .subContainer{ width: auto;background-color:grey;margin: 20px;padding: 20px;}
+        .subContainer .submit{text-align: center}
+        .detailArguments{border: 1px dashed darkgray;margin: 10px;display: none}
+        span{color: #2db2df}
+    </style>
+</head>
+<body>
+<div class="container">
+    <form>
+        <div class="subContainer">
+            <div class="sub">
+                <span>仿真区域:</span><br><br>
+                <select class="area">
+                    <option class="">矩形</option>
+                    <option class="">圆形</option>
+                    <option class="">蜂窝</option>
+                </select><br><br>
+                <div class="argControl">长：<input type="text" name="arg">宽：<input type="text" name="arg"></div><br>
+            </div>
+            <div class="submit"><input type="button" value="提交"  ></div>
+        </div>
+    </form>
+
+    <form>
+        <div class="subContainer">
+            <div class="sub">
+                    <span >仿真模式：</span><br /><br />
+                    <label><input name="mode" type="checkbox" value="" />LTE </label>
+                    <label><input name="mode" type="checkbox" value="" />smallCell </label>
+                    <label><input name="mode" type="checkbox" value="" />Wifi </label>
+                    <label><input name="mode" type="checkbox" value="" />D2D </label><br><br>
+                <div class="detailArguments">
+                    优先级：
+                    <select class="priority">
+                        <option class="">1</option>
+                        <option class="">2</option>
+                        <option class="">3</option>
+                        <option class="">4</option>
+                    </select><br>
+                    基站数目：
+                        <select>
+                            <option class="">1</option>
+                            <option class="">7</option>
+                            <option class="">19</option>
+                        </select>
+                    <label>半径：<input type="text"></label><br>
+                    <label>接收用户数：<input type="text"></label><br>
+                    <label>发射功率：111<input type="text">dBm</label><br>
+                </div>
+                <div class="detailArguments">
+                    优先级：
+                    <select class="priority">
+                        <option class="">1</option>
+                        <option class="">2</option>
+                        <option class="">3</option>
+                        <option class="">4</option>
+                    </select><br>
+                    <label>基站数目：<input type="text">半径：<input type="text"></label><br>
+                    <label>接收用户数：<input type="text"></label><br>
+                    <label>发射功率：222<input type="text">dBm</label><br>
+                </div>
+                <div class="detailArguments">
+                    优先级：
+                    <select class="priority">
+                        <option class="">1</option>
+                        <option class="">2</option>
+                        <option class="">3</option>
+                        <option class="">4</option>
+                    </select><br>
+                    <label>基站数目：<input type="text">半径：<input type="text"></label><br>
+                    <label>接收用户数：<input type="text"></label><br>
+                    <label>发射功率：333<input type="text">dBm</label><br>
+                </div>
+                <div class="detailArguments">
+                    优先级：
+                    <select class="priority">
+                        <option class="">1</option>
+                        <option class="">2</option>
+                        <option class="">3</option>
+                        <option class="">4</option>
+                    </select><br>
+                    <label>D2D发射机数目：<input type="text"></label><br>
+                    <label>接收用户数：<input type="text"></label><br>
+                    <label>发射功率：444<input type="text">dBm</label><br>
+                </div>
+            </div>
+            <div class="submit"><input type="button" value="提交" ></div>
+        </div>
+    </form>
+    <!--<div class="sub">
+       <span >其他参数：</span><br>
+       带宽：<input type="text" placeholder="请输入……">子波参数：<input type="text" placeholder="请输入……">
+   </div>-->
+</div>
+
+<script>
+    window.onload=function () {
+        var oDiv = document.getElementsByClassName("sub");//第一部分
+        var oArea = oDiv[0].getElementsByTagName("select")[0];
+        var oAreaArg = document.getElementsByClassName("argControl")[0];
+
+        var items=document.getElementsByName("mode");
+        var oDetail=document.getElementsByClassName("detailArguments");
+        var oSubmit=document.getElementsByClassName("submit");
+        oArea.onchange = function () {
+            if (oArea.selectedIndex == 0) {
+                oAreaArg.innerHTML = "";
+                oAreaArg.append("长：");
+                oAreaArg.appendChild(createInput("input", "argLength"));
+                oAreaArg.append("宽：");
+                oAreaArg.appendChild(createInput("input", "argWidth"));
+            } else if (oArea.selectedIndex == 1) {
+                oAreaArg.innerHTML = "";
+                oAreaArg.append("半径：");
+                oAreaArg.appendChild(createInput("input", "argRadius"));
+            } else {
+                oAreaArg.innerHTML = "";
+            }
+        };
+        oSubmit[0].onclick=function () {
+            alert("提交第一部分");
+        };
+        for (var i=0;i<items.length;i++){
+            items[i].index=i;
+            items[i].onclick=function () {
+                if(this.checked){
+                    oDetail[this.index].style.display="block";
+                }else {
+                    oDetail[this.index].style.display="none";
+                }
+            }
+        }
+
+        oSubmit[1].onclick=function () {
+            var str="";
+            for (var i=0;i<items.length;i++){
+                if(items[i].checked){
+                    str+='第'+i+'个';
+                }
+            }
+            alert("将要提交:"+str+"数据")
+        };
+    };
+    function createInput(type,id) {
+        var node=document.createElement(type);
+        node.id=id;
+        return node;
+    }
+
+</script>
+</body>
+</html>

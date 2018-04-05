@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>CRUD</title>
+	<script type="text/javascript" src="./Scripts/angular.js"></script>
+	<script type="text/javascript" src="./Scripts/angular-route.js"></script>
+	 <script type="text/javascript" src="./Scripts/myApp.js"></script>
+	 <style>
+        .application-root a{text-decoration:none;}
+
+     </style>
+</head>
+<body >
+   <center>
+       <div class="application-root">
+            <div class="application-header">
+                <h2 class="application-title">AngularJS Demo - CRUD案例</h2>
+            </div>
+            <br/>
+            <a href="#/ProductList">列表</a> <a href="#/ProductEdit">编辑</a>
+            <div class="application-content">
+                <div ng-view=""></div>
+            </div>
+     </div>
+
+   </center>
+     
+     <script type="text/javascript">
+            Array.prototype.remove = function () {
+                var what, a = arguments, L = a.length, ax;
+                while (L && this.length) {//参数长度与数组长度
+                    what = a[--L];
+                    while ((ax = this.indexOf(what)) !== -1) {//this.indexOf(what),值为what的位置。后赋值。
+                        this.splice(ax, 1);//要删除的第一项的位置与要删除的项的个数
+                    }
+                }
+                return this;
+            };
+      </script>
+     
+
+
+</body>
+</html>

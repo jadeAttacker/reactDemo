@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo5：angular.js 模块化</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue;
+        }
+
+    </style>
+</head>
+<body ng-app="demo5">
+<center ng-controller="startController">
+            <!-- <ul ng-controller="secondController" ng-app="demo55">
+                <li ng-repeat="item in items">{{item}}</li>
+            </ul> -->
+
+            <table border=1 style="border-collapse:collapse;color:red" ><!-- style里的内容，用；隔开！！有的是用空格，注意！ -->
+               <thead>
+                   <tr>
+                       <th>姓名</th>
+                       <th>性别</th>
+                       <th>年龄</th>
+                   </tr>
+               </thead>
+               <tbody >
+                   <tr ng-repeat="star in stars"><!-- //加引号 -->
+                       <th>{{star.name}}</th>
+                       <th>{{star.sex}}</th>
+                       <th>{{star.age}}</th>
+                   </tr>
+               </tbody>
+            </table>
+            <p ng-show='show'>为true时才显示！</p>
+            <button ng-click="toggle()">切换</button>
+            <p ng-hide="true">为true时隐藏 false时候显示</p>
+            <p ng-if="show">ng-if为true时显示 ng-if为false时，直接把标签remove</p>
+            <img ng-src="{{path}}"  width="180" height='90' alt="地图">
+            <h1 ng-class="{red:true,blue:false}">类名测试</h1><!-- 真正的对象  angular 的扩展用分号 -->
+</center>
+    <script>
+           var demo=angular.module("demo5",[]);
+           demo.controller("startController",['$scope',function ($scope) {
+               // body...
+               $scope.stars=[
+                   {name:'刘德华',sex:'男',age:62},
+                   {name:'张学友',sex:'男',age:60},
+                   {name:'张柏芝',sex:'女',age:45}]
+               $scope.show=true;/*没有分号*/
+               $scope.toggle=function(){
+                   $scope.show=!$scope.show;
+
+               }
+               $scope.path="./demo5.png";
+               $scope.className="blue";
+
+           }])
+          /* var secondDemo=angular.module("demo55",[]);
+           secondDemo.controller("secondController",['$scope',function($scope){
+               $scope.items=['html','css','java'];
+           }])*/
+    </script>
+</body>
+</html>

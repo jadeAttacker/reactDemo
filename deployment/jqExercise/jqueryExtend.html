@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery插件扩展</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="./jquery-3.2.1.min.js""></script>
+	<script type="text/javascript" src="./jquery.color.js"></script>
+	<script type="text/javascript" src="./jquery.alertBgColor.js"></script>
+	<script type="text/javascript" src="./jquery.trim.js"></script>
+	<script type="text/javascript">
+         ;(function($){
+              $.extend($.expr[":"],{
+              	between:function(a,i,m){
+              		var tem=m[3].split(",");
+              		return tem[0]-0<i&&i<tem[1]-0;
+              	}
+              });
+         })(jQuery);
+
+	</script>
+	<style type="text/css">
+        .a{
+        	background-color: purple;
+        }
+        .odd{
+        	background-color: orange;
+        }
+        .even{
+        	background-color: orange;
+        	opacity: 0.3;
+        }
+        .selected{
+        	background-color: red;
+        }
+	</style>
+</head>
+<body>
+     <textarea class="a">red</textarea> 
+      <div>未知色</div>
+      <div>未知色</div>
+     <div style="color:blue">蓝色</div>
+     <div style="color:green">绿色</div>
+     <div style="color:red;opacity:0.5">红色</div>
+       <div style="color:red;opacity:0.5">红色</div>
+     
+     <table  id="table1">
+           <thead>
+	           <tr>
+	               <th></th>
+	               <th>姓名</th>
+		           <th>性别</th>
+		           <th>地址</th>
+	           </tr>
+           </thead>
+	       <tbody>
+               <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+
+
+	       </tbody> 
+          
+     </table>
+     <table id="table2">
+           <thead>
+	           <tr>
+	               <th></th>
+	               <th>姓名</th>
+		           <th>性别</th>
+		           <th>地址</th>
+	           </tr>
+           </thead>>
+	       <tbody>
+               <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+                <tr>
+                    <td><input type="checkbox" name=""></td>
+					<td>张三</td>
+					<td>男</td>
+					<td>北京</td>
+               </tr>
+
+
+	       </tbody> 
+          
+     </table>
+     <script type="text/javascript">
+           $(function(){
+           	  $("table").alertBgColor().find("thead").color("red");
+           	
+           	  $(".a").val(jQuery.trim("    gggggg    ")+"\n"+jQuery.ltrim('     gggggg    ')+"\n"+jQuery.rtrim('      gggggg     '));
+
+
+           	 $("div:between(2,4)").empty();
+
+           });
+         
+    
+       /*   $(function(){   
+          	  alert($("div").color());
+
+          })
+*/     </script>
+</body>
+
+</html>

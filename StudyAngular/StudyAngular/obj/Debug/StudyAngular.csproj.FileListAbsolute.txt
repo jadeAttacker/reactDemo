@@ -1,0 +1,6 @@
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\bin\StudyAngular.dll.config
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\bin\StudyAngular.dll
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\bin\StudyAngular.pdb
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\obj\Debug\StudyAngular.csprojResolveAssemblyReference.cache
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\obj\Debug\StudyAngular.dll
+E:\CodingNet\TechDeepen\AngularJS\StudyAngular\StudyAngular\obj\Debug\StudyAngular.pdb

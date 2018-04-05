@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数设置</title>
+    <style>
+        .sub{margin: 30px; padding: 15px;background-color:grey }
+        #container{ width: auto}
+        span{color: #2db2df}
+    </style>
+</head>
+<body>
+<form>
+    <div id="container">
+        <div class="sub">
+            <span>仿真区域:</span><br>
+            <select class="area">
+                <option class="">矩形</option>
+                <option class="">圆形</option>
+                <option class="">蜂窝</option>
+            </select><br>
+            <div class="argControl">长：<input type="text" name="arg" placeholder="请输入……">宽：<input type="text" name="arg" placeholder="请输入……"></div>
+        </div>
+
+
+        <div class="sub">
+            <span >仿真模式：</span><br>
+            <select class="">
+                <option class="">LTE</option>
+                <option class="">smallCell</option>
+                <option class="">Wifi</option>
+                <option class="">D2D</option>
+            </select>
+            优先级：
+            <select id="priority">
+                <option class="">1</option>
+                <option class="">2</option>
+                <option class="">3</option>
+                <option class="">4</option>
+            </select><br>
+            <div class="argControl" >
+                基站数目：
+                <select>
+                    <option class="">1</option>
+                    <option class="">7</option>
+                    <option class="">19</option>
+                </select>
+                半径：<input type="text" placeholder="请输入……">
+            </div>
+
+            <label >用户数：</label><input type="text" placeholder="请输入……"><br>
+            <label>发射功率：</label><input type="text" placeholder="请输入……"><br>
+        </div>
+
+        <div class="sub">
+            <span >其他参数：</span><br>
+            带宽：<input type="text" placeholder="请输入……">子波参数：<input type="text" placeholder="请输入……">
+        </div>
+    </div>
+    <input type="button" value="提交" id="submit">
+</form>
+<script>
+    window.onload=function () {
+        var oDiv = document.getElementsByClassName("sub");//第一部分
+        var oArea = oDiv[0].getElementsByTagName("select")[0];
+        var oAreaArg = document.getElementsByClassName("argControl")[0];
+
+        var oMode = oDiv[1].getElementsByTagName("select")[0];//第二部分
+        var oModeArg = document.getElementsByClassName("argControl")[1];
+        var oSubmit = document.getElementById("submit");
+        var json = {};
+        oArea.onchange = function () {
+            if (oArea.selectedIndex == 0) {
+                oAreaArg.innerHTML = "";
+                oAreaArg.append("长：");
+                oAreaArg.appendChild(createInput("input","argLength"));
+                oAreaArg.append("宽：");
+                oAreaArg.appendChild(createInput("input","argWidth"));
+            } else {
+                oAreaArg.innerHTML = "";
+                oAreaArg.append("半径：");
+                oAreaArg.appendChild(createInput("input","argRadius"));
+            }
+        };
+        oMode.onchange = function () {
+            if (oMode.selectedIndex == 0) {
+                var number=1;
+                oModeArg.innerHTML="";
+                oModeArg.append("半径：");
+                var oSelect=createInput("select","num");
+                for(var i=0;i<3;i++) {
+                    var opt = document.createElement("option");
+                    number=number+i*6;
+                    opt.innerHTML=number;
+                    oSelect.appendChild(opt);
+                }
+                oModeArg.appendChild(oSelect);
+                oModeArg.append("用户数");
+                oModeArg.appendChild(createInput("input",""));
+            }else if(oMode.selectedIndex == 3) {
+                oModeArg.innerHTML="";
+                oModeArg.append("基站数目：");
+                oModeArg.appendChild(createInput("input","num"));
+            }else {
+                oModeArg.innerHTML="";
+                oModeArg.append("基站数目：");
+                oModeArg.appendChild(createInput("input","num"));
+                oModeArg.append("半径");
+                oModeArg.appendChild(createInput("input",""));
+            }
+
+        };
+        oSubmit.onclick = function () {
+            var arr1=[];
+            arr1.push(oArea.value);
+            for (var i=0;i<oDiv[0].getElementsByTagName("input").length;i++){
+                arr1.push(oDiv[0].getElementsByTagName("input")[i].value)
+            }
+            var arr2=[];
+            arr2.push(oMode.value);//LTE,D2D等
+            arr2.push(oDiv[1].getElementsByTagName("select")[1].value);//优先级
+            if (oMode.selectedIndex == 0) {//基站数目
+                arr2.push(oModeArg.getElementsByTagName("select")[0].value);
+            }
+            for (var i=0;i<oDiv[1].getElementsByTagName("input").length;i++){//其他参数
+                arr2.push(oDiv[1].getElementsByTagName("input")[i].value)
+            }
+            var arr3=[];
+            for (var i=0;i<oDiv[2].getElementsByTagName("input").length;i++){
+                arr3.push(oDiv[2].getElementsByTagName("input")[i].value)
+            }
+            addData(json,"first",arr1);
+            addData(json,"second",arr2);
+            addData(json,"third",arr3);
+            alert(json.first);
+            alert(json.second);
+            alert(json.third);
+
+        }
+
+    };
+
+    function createInput(type,id) {
+        var node=document.createElement(type);
+        node.id=id;
+        return node;
+    };
+    function addData(json,key,value) {
+         json[key]=value;
+    }
+</script>
+</body>
+</html>

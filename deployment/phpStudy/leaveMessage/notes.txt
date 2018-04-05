@@ -1,0 +1,9 @@
+|--index.php  添加留言页面
+|
+|--doAdd.php 获取留言信息。并执行添加操作
+|
+|--show.php  显示留言
+|
+|--del 执行删除留言的页面
+|
+|--leavaMessage.txt 储存留言

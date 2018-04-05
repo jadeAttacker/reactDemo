@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html charset=utf-8"/>
+	<title>ng-show ng-if</title>
+	<script  type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+	<style>
+
+	</style>
+</head>
+<body ng-app="myApp">
+    <div id="test" ng-controller="myController" ng-if="btn">
+         测试div
+    </div>
+    <input type="text"   ng-model="btn"/>
+    <script>
+       var modul=angular.module("myApp",[]);
+       modul.controller("myController",['$scope',function ($scope) {
+       	       $scope.btn=false;
+       }])
+
+    </script>
+</body>
+</html>

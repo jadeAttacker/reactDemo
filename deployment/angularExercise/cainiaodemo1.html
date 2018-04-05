@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AngularJS 指令</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+</head>
+<body ng-app="App">
+   <div ><input type="text" ng-model="name" ng-init="name='nihao'"></div><!-- 以它的数据为准，$scope.name="小明";失效！ -->
+   <p ng-bind="name"></p>
+   <script>
+       var model=angular.module("App",[]);
+       model.controller("myCtr",["scope",function($scope){
+                 $scope.name="小明";
+       }])
+
+       /*var model=angular.module("App",[]);
+       model.directive("hello",function () {//返回一个对象
+       	    return {
+       	    	restrict:"A"//属性名  E：元素名
+       	    	template:"<h1>你好！！</h1>"
+       	    }
+       })*/
+   </script>
+   <script>
+     /* 笔记：
+     app是应用程序。
+      ng-model：用于表单元素，支持双向绑定，对普通元素无效
+      ng-bind用于普通元素，不能用于表单元素，应用程序单向地渲染数据到元素；
+       当ng-bind和{{}}同时使用时，ng-bind绑定的值覆盖该元素的内容。
+       每个controller对应一个scope
+       不同的controller有不同的scope
+ angular过滤器：
+        currency	格式化数字为货币格式。
+		filter	从数组项中选择一个子集。
+		lowercase	格式化字符串为小写。
+		orderBy	根据某个表达式排列数组。
+		uppercase	格式化字符串为大写。
+        <input type="number" ng-model="price">text里的东西可以增加减少。
+        自定义的过滤器，在模块上面。
+           姓名: {{ msg | reverse }}
+	        var app = angular.module('myApp', []);
+				app.controller('myCtrl', function($scope) {
+				    $scope.msg = "Runoob";
+				});
+				app.filter('reverse', function() { //可以注入依赖
+				    return function(text) {
+				        return text.split("").reverse().join("");
+				    }
+				});
+	    angulard的服务，要把服务名当作参数传进去。
+	    <div ng-switch="myVar">
+		  <div ng-switch-when="dogs">
+		     <h1>Dogs</h1>
+		     <p>Welcome to a world of dogs.</p>
+		  </div>
+		  <div ng-switch-when="tuts">
+		     <h1>Tutorials</h1>
+		     <p>Learn from examples.</p>
+		  </div>
+		  <div ng-switch-when="cars">
+		     <h1>Cars</h1>
+		     <p>Read about cars.</p>
+		  </div>
+		</div>
+       */
+   </script>
+
+
+</body>
+</html>

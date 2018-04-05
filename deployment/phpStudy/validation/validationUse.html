@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>验证码的使用</title>
+	<meta charset="utf-8">
+</head>
+<body>
+   <form action="#">
+       <label>账号:</label><input type="text" name=""><br>
+       <label>密码:</label><input type="text" name=""><br>
+       <label>验证:</label><input type="text" name="" size="6">
+             <img style="margin-top:20px;height:30px;align:top" src="./validation.php" onclick="this.src='./validation.php?id'+=Math.random()">
+   </form>
+
+</body>
+</html>

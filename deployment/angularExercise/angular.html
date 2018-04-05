@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>第一个angular练习</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<!-- <script type="text/javascript" src="../angular-1.5.8/angular.js"></script> -->
+	<link href="../angular-1.5.8/angular.js"/>
+</head>
+<body >
+		<div ng-app="myApp" ng-controller="myCont"><!-- 指定视图，指定控制器 -->
+		    <p>当前页面：</p>
+		    <h3>{{myUrl}}</h3>
+		</div>
+        <script type="text/javascript">
+             var app=angular.module("myApp",[]);/*当前视图产生一个对应的模块*/ /*上接视图，下接控制器*/
+             app.controller("myCont",function($scope,$location){/*该模块链接一个控制器，控制器操作该模块（$scope）的数据*/
+             	  $scope.myUrl = $location.absUrl();
+             })
+        </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数据绑定</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<script type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+</head>
+<body ng-app="App" ng-init="sex='男';hobby='学习'">
+     <div  ng-controller="myController">
+     <!-- 模型数据向视图绑定！ -->
+         <h1>{{name}}{{age}}</h1>
+         <h2 ng-bind="age"></h2>
+         <h2 ng-bind-template="{{name}}/////{{age}}"></h2>
+         <h3>{{sex}}……………………{{hobby}}</h3>
+
+         <input type="text" ng-model="demo"><!-- //他的值就是demo对象的值  ng-model:你的值存为这个对象。 -->
+         <p>{{demo}}</p>
+         <input type="button" ng-click="say()" value="点击">
+ 
+     </div>
+</body>
+<script>
+     var mod=angular.module("App",[]);
+     mod.controller("myController",['$scope',function($scope){
+               $scope.name="hahha";
+               $scope.age=10;
+               $scope.say=function(){
+               	   alert($scope.demo);
+               }
+
+     }])
+    /* ng-bind、{{}}m:模型向视图绑定。{{}}绑定会有闪烁现象，ng-cloak。ng-bind不会输出到页面上
+       ng-model="demo" 将视图数据绑定到模型,必须添加到表单元素上。
+       ng-init可以初始化模型。
+
+
+    */
+
+</script>
+</html>

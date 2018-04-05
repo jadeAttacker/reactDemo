@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自定义指令</title>
+	<meta http-equiv="Content-type" content="text/html charset=utf-8">
+	<script  type="text/javascript" src="../angular-1.5.8/angular.js"></script>
+</head>
+<body ng-app="App">
+    <tag></tag>
+    <div tag></div>
+    <div class="tag"></div>
+    <!-- directive:tag -->
+</body>
+<script>
+     var mod=angular.module('App',[]);
+     /*用该方法自定义指令*  标签和指令都可以控制*/
+     mod.directive("tag",function(){
+     	return{
+     		/*E:element
+     		A:attribute
+     		C:class
+     		M:mark*/
+
+     		restrict:"EAC",
+     		template:"<h1>工厂模式</h1><small>123</small>"
+     		/*templateUrl:"header.html"*/
+     		/*用字符串定义模板时，要确定字符串有根元素
+     		错：template:'<h1>工厂模式</h1><small>123</small>',
+     		正确：template:"<div><h1>工厂模式</h1><small>123</small></div>"*/
+     		/*replace:true,
+     		*/
+     	}
+     });
+    /* mod.controller("myController",['$scope',function ($scope) {
+     	// body...
+     }])*/
+
+</script>
+</html>

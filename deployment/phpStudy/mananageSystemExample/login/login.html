@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>login</title>
+<style>
+#container{
+	background-color:#4eabe8;
+	margin:200px auto;
+	width:250px;
+	height:300px;
+
+}
+#back{
+    width:250px;
+    height:120px;
+    background: url("jlu.png");
+
+}
+#data{
+     position: relative;
+ }
+#account{
+    position: relative;
+
+}
+#suggest{
+    position: absolute;
+    top:30px;
+    left: 35px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #797979;
+    margin: 0  40px auto 30px;
+    overflow: auto;
+    padding: 0;
+    text-align: left;
+    visibility: visible;
+    display:none;
+    z-index: 2;
+}
+#check{
+    height:30px;
+    width:150px;
+    margin-left:50px;
+    position: relative;
+}
+#reset{
+	float:right;
+}
+.item{
+    clear: both;
+    color: #68bff9;
+    cursor: pointer;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    list-style: none outside none;
+    margin: 0 1px;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+.activeItem{
+    clear: both;
+    color: #68bff9;
+    cursor: pointer;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    list-style: none outside none;
+    margin: 0 1px;
+    padding: 0 5px;
+    white-space: nowrap;
+    background-color: #2db2df;
+}
+.item:hover{
+    background-color: #4bcf99;
+ }
+</style>
+</head>
+<body>
+<div id="container">
+     <div id="back"></div>
+     <form id="form1" name="form1" method="post" action="../index.html" onsubmit="return eg.checkInput()">
+        <div id="data">
+             <div id="account">
+                 <p>用户名：<input name="username" type="text"  placeholder="请输入用户名" id="username" /></p>
+                 <p>密 码 ：<input name="password" type="password" placeholder="请输入密码" id="password" /></p>
+             </div>
+             <ul id="suggest" >
+                   <li class="note" email="">请选择邮箱类型</li>
+                   <li class="item" email=""></li>
+                   <li class="item" email="@sina.com">@sina.com</li>
+                   <li class="item" email="@163.com">@163.com</li>
+                   <li class="item" email="@qq.com">@qq.com</li>
+                   <li class="item" email="@126.com">@126.com</li>
+                   <li class="item" email="@vip.sina.com">@vip.sina.com</li>
+                   <li class="item" email="@sina.cn">@sina.cn</li>
+                   <li class="item" email="@hotmail.com">@hotmail.com</li>
+                   <li class="item" email="@gmail.com">@gmail.com</li>
+                   <li class="item" email="@sohu.com">@sohu.com</li>
+                   <li class="item" email="@yahu.com">@yahu.com</li>
+                   <li class="item" email="@wo.cn">@wo.cn</li>
+             </ul>
+             <p></p>
+        </div>
+        <div id="check">
+            <input type="submit" name="Submit" id="sum"  value="提交"/>
+            <input type="reset" name="reset"  id="reset" value="重置" />
+        </div>
+     </form>
+</div>
+<script>
+eg={};
+eg.$=function(id){
+	return document.getElementById(id)
+	};
+eg.getClass=function (myClass) {
+    return document.getElementsByClassName(myClass)
+};
+eg.Allshow=function () {
+    for(var j=1;j<eg.ulli.length;j++){//全部显示
+        this.ulli[j].style.display="block";
+    }
+};
+eg.selectShow=function () {//匹配需要显示的，输入框有变化就要调用。
+    var This=this;
+    var value=eg.username.value;
+    var re=new RegExp('@'+value.substring(value.indexOf('@')+1)+'');
+    eg.Allshow();
+    eg.ulli[1].innerHTML=value;
+    if (re.test(value)){
+        for(var i=1;i<eg.ulli.length;i++){
+            if (re.test(This.ulli[i].getAttribute("email"))){
+                This.ulli[i].style.display="block";
+            }else {
+                This.ulli[i].style.display="none"
+            }
+        }
+    }else{
+        for(var i=1;i<eg.ulli.length;i++){
+            This.ulli[i].innerHTML=value+This.ulli[i].getAttribute("email");
+        }
+    };
+};
+eg.sec=function (t) {//默认显示第一个li，对每个里注册onmouseover事件，输入框有变化就要调用（注册事件重复了）
+    var This=this;
+    if(this.username.value==''){
+        this.ulli[t].className="item";
+    }else {
+        this.ulli[t].className="activeItem";
+    }
+    for(var i=1;i<eg.ulli.length;i++) {
+        this.ulli[i].index=i;//有问题？？
+        this.ulli[i].onmouseover=function () {
+            for (var j = 1; j<eg.ulli.length; j++) {
+                This.ulli[j].className = "item";
+            }
+            this.className = "activeItem";
+            eg.showNow=this.index;
+            console.log("idezhi"+eg.showNow)
+        };
+        this.ulli[i].onmousedown=function () {
+            This.username.value=this.innerHTML;
+        }
+    }
+
+};
+eg.init=function () {
+    eg.username.onfocus=function () {
+        eg.suggest.style.display="block";
+    };
+    eg.username.onblur=function () {
+        eg.suggest.style.display="none"
+    };
+    eg.username.oninput=function () {//改成if else
+        eg.selectShow();
+        eg.sec(1);
+    };
+    eg.username.onkeydown=function (event) {//注册键盘事件
+                var e=event||window.event;
+                if (e.keyCode==40){
+                    if(eg.showNow==12){
+                        eg.showNow=1;
+                        for (var j = 1; j<eg.ulli.length; j++) {
+                            eg.ulli[j].className = "item";
+                        }
+                        eg.sec(eg.showNow);
+                    }else {
+                        eg.showNow++;
+                        for (var j = 1; j<eg.ulli.length; j++) {
+                            eg.ulli[j].className = "item";
+                        }
+                        eg.sec(eg.showNow);
+                        console.log("按下键盘")
+                    }
+
+                }
+                if (e.keyCode==38) {
+                    if (eg.showNow == 1) {
+                        eg.showNow = 12;
+                        for (var j = 1; j < eg.ulli.length; j++) {
+                            eg.ulli[j].className = "item";
+                        }
+                        eg.sec(eg.showNow);
+                    } else {
+                        eg.showNow--;
+                        for (var j = 1; j < eg.ulli.length; j++) {
+                            eg.ulli[j].className = "item";
+                        }
+                        eg.sec(eg.showNow);
+                    }
+
+                }
+                if (e.keyCode==13){
+                     eg.username.value=eg.ulli[eg.showNow].innerHTML;
+                     eg.username.blur();
+                }
+    }
+
+};
+window.onload=function () {
+    eg.username= eg.$("username");
+    eg.suggest= eg.$("suggest");
+    eg.ulli=eg.suggest.getElementsByTagName("li");
+    eg.showNow=1;
+    eg.init();
+
+};
+eg.AJAX = function(config,callback){
+//接受一个回调函数和一个配置参数
+    var xmlhttp;	//定义一个变量用于后面存储对象
+    if(window.XMLHttpRequest){//如果浏览器支持XMLHttpRequest对象，通常非IE浏览器支持
+        xmlhttp = new XMLHttpRequest();
+    }else if (window.ActiveXObject){//如果浏览器支持ActiveXObject对象，通常是IE
+        try {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");//尝试创建一个低版本对象，msxml组件2.6版本以下支持
+        }catch (e){
+            try {xmlhttp = new ActiveXObject("msxml2.XMLHTTP");//尝试创建一个高版本对象，msxml组件3.0版本以上支持
+            }
+            catch (x){
+            }
+        }
+    }
+    if(xmlhttp){//如果能够创建成功，一般都会成功，如果还不行，这系统就重装吧！太古老了。
+        if(config.ISASYN){
+            xmlhttp.onreadystatechange = function(){//定义HTTP状态发生改变时执行的函数
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){//当HTTP请求成功时
+                    callback(xmlhttp.responseText);//把服务器响应的数据回传给回调函数callback
+                }
+            };
+            xmlhttp.open(config.TYPE,config.URL,true);//将传递的参数给open方法调用
+            xmlhttp.send(config.DATA);//发送异步AJAX请求
+        }else{
+            xmlhttp.open(config.TYPE,config.URL,false);//将传递的参数给open方法调用
+            xmlhttp.send(config.DATA);//发送同步AJAX请求
+            callback(xmlhttp.responseText,xmlhttp.responseXML);
+        }
+    }
+};
+eg.getData=function () {
+    eg.AJAX({
+        TYPE:"GET",
+        URL:"namepassword.txt",
+        ISASYN:true
+    
+      },function (data) {
+        eg.myData=data;
+        eg.json = (new Function("return " + eg.myData))();
+        console.log(eg.json.first.name);
+      }
+    );
+};
+eg.getData();
+eg.checkInput=function(){
+    var uname=eg.$("username").value;
+    var pword=eg.$("password").value;
+
+    if(uname==eg.json.first.name&&pword==eg.json.first.password){
+        return true;
+    }else if(uname==""||pword==""){
+       // alert("不能为空");
+        console.log("blank");
+        return false;
+    }else{
+        alert("用户名或密码错误");
+        console.log("wrong");
+        return false;
+    }
+};
+
+
+
+
+	/*
+eg.login=function(){
+	var uname=eg.$("username").value;
+	var pword=eg.$("password").value;
+	if(uname==""||pword==""){
+		alert("不能为空");
+        console.log("blank");
+		return false;
+	}
+	else if(uname=="dw" && pword=="dw"){
+                console.log("right");
+                return true;
+    }else{
+		        alert("用户名或密码错误");
+                console.log("wrong");
+		        return false;
+    }
+
+}*/
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="./allcss/highPerformance.css" rel="stylesheet" type="text/css">
+    <title>联动日历</title>
+</head>
+<body>
+<form>
+    <input type="text" class="date">
+    <input type="text" class="price">
+    <input type="button" value="确定" class="choose">
+</form>
+<div id="div1" >
+    <div id="nowMonth">
+
+      </div>
+
+      <div id="nextMonth">
+
+      </div>
+</div>
+<script src="./alljs/highPerformance.js"></script>
+<script src="./alljs/ajax.js"></script>
+<script>
+    window.onload=function () {
+        var oChoose=document.getElementsByClassName("choose")[0];
+        var calender=new Calendar("div1","nowMonth","nextMonth");
+        var oBtn=true;
+        var oDate=new Date();
+        oChoose.onclick=function () {
+            if(oBtn){
+                calender.init(oDate.getFullYear(),oDate.getMonth()+1);
+                oBtn=!oBtn;
+            }
+            if(calender.oBtn2){
+                calender.oObj.style.display="block";
+            }
+            else {
+                calender.oObj.style.display="none";
+            }
+            calender.oBtn2=!calender.oBtn2;
+        };
+    };
+</script>
+</body>
+</html>

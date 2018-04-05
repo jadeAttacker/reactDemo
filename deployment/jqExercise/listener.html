@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery中的事件和动画</title>
+	<meta  http-equiv="Content-type" content="text/html;charset=utf-8">
+	<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+	<style type="text/css">
+         #panel{
+         	height: 300px;
+         	width: 300px;
+         	background: blue;
+         	opacity: 0.7;
+         	margin: 20px auto;
+         	position: relative;
+         	border: 1px solid #0050D0;
+         	cursor: pointer;
+         }
+         #test{
+           
+         }
+
+        /*  .red{
+        	background: red;
+        }
+        .blue{
+        	background:green;
+        }
+        #delAll{
+        	height: 500px;
+        	width: 300px;
+        	background: purple;
+        } */
+	</style>
+</head>
+
+<body>
+    <div id="panel">
+          <div id="test"></div>
+         <!--  <span class="red">内层div元素</span>
+         <div id="test">外层div元素</div>
+         <div id="delAll">删除所有事件</div> -->
+         
+    </div>
+    <script type="text/javascript">
+          $(function(){
+               
+               	    $("#panel").hover(function(){
+               	    	$(this).stop(false,true).animate({"height":"150px"},2000).animate({"width":"150px"},2000)
+
+               	    },function(){
+               	    	$(this).stop(false,true).animate({"height":"300px"},2000).animate({"width":"300px"},2000)
+
+            
+     				 })
+
+               	 /*  $(this).animate({left:"+=200px",height:"500px",opacity:1},3000)
+               	      .animate({top:"200px",width:"400px"},3000,function(){
+                            $(this).css("border","5px solid red");  
+
+
+
+               	      })
+*/
+          
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 			/*$("span").bind("click",function(){
+ 				if($("#delAll").is(":visible")) {
+ 					alert(1)
+                      $("#delAll").slideUp("slow");
+ 				}else{
+ 					alert(111)
+                      $("#delAll").slideDown("slow");
+ 				}
+ 				
+ 			})*/
+
+       		/*$("span").click(function(){
+       	        $("#test").append("<p>绑定1</p>")
+       		});
+       		$("span").click(function(){
+       	        $("#test").append("<p>绑定2</p>")
+       		});
+       		$("span").click(function(){
+       	        $("#test").append("<p>绑定3</p>")
+       		})
+            
+            $("#delAll").click(function(){
+                 $("span").unbind("click")
+            })
+*/
+             /* $("span").bind("click",function(event){
+              	    var txt=$("#msg").html()+"<p>内层span点击</p>";
+              	    $("#msg").html(txt);
+              	    alert(event.pageY);
+              	    event.stopPropagation();
+              })
+              
+            $("#panel").bind("click",function(){
+              	    var txt=$("#msg").html()+"<p>面板被点击</p>";
+              	    $("#msg").html(txt);
+              })
+             $("body").bind("click",function(){
+              	    var txt=$("#msg").html()+"<p>body被点击</p>";
+              	    $("#msg").html(txt);
+              })*/
+
+
+          	 /* var content= '<div class="content">我也不知道</div>';
+          	  $("#panel").append(content);
+              $(".head").toggle(function(){
+              	     $(this).addClass("highlight");
+
+                     $(this).next().show("slow");              
+              },function(){
+              	    $(this).removeClass("highlight");
+          			$(this).next().hide("slow");
+              }) */
+            
+
+       
+           
+          })
+
+
+
+
+    </script>
+</body>
+</html>

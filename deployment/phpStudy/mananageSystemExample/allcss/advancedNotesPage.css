@@ -1,0 +1,41 @@
+#myNotesContainer{
+    border: 1px greenyellow solid ;
+    width: 200px;
+    height:30px;
+
+}
+.picture{
+    margin: 20px;
+    float: left;
+    background-color: red;
+    width:80px;
+    height: 80px;
+}
+.main-cont ul{
+
+}
+.main-cont li{
+    list-style: none;
+}
+.main-cont li div{
+    width: 120px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px rebeccapurple inset;
+    height: 30px;
+    overflow: hidden;
+    line-height:30px;
+}
+.main-cont li p{
+    height: 30px;
+    margin: 0;
+}
+.turnPictureContainer{
+    min-width: 500px;overflow:hidden;height: 350px;width: 700px;position: absolute;}
+.turnPictureContainer ul{ padding:0;margin: 0; position:absolute; width: 2100px}
+.turnPictureContainer ul li{margin: 0; float: left;}
+.turnPictureContainer img{ position: relative;}
+#btn{position: absolute;bottom: 0;width:100%;text-align: center;}
+#btn a{display: inline-block;  cursor: pointer;width: 12px;height: 12px;background-color: blueviolet}
+#btn a.active{background-color: blue}
+#btn a:hover{background-color: blue}

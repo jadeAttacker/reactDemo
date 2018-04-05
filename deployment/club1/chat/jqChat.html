@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>聊天</title>
+	<script  src="http://code.jquery.com/jquery-latest.js"></script>
+	<style type="text/css">
+	    #container{
+	    	margin: 10px auto;
+        	height: 550px;
+        	width: 500px;
+        	border: 1px black solid;
+        	padding: 10px;
+        }
+        #messagewindow{
+        	height: 480px;
+        	width: 480px;
+        	border: 1px red solid;
+        }
+	</style>
+</head>
+<body>
+		<div id="container">
+		   <div id="messagewindow"><span id="loading">加载中…………</span></div>
+		   <form id="chatform">
+		      姓名：<input type="text" id="author" name="" size="50"><br>
+		      内容：<input type="text" id="msg" name="" size="50"><br>
+		      <input type="submit" value="发送" name=""><br>
+		   </form>
+		</div>
+		<script type="text/javascript">
+		    $(function(){
+				   timesamp=0;
+				   updateMsg();
+				   $("#chatform").submit(function(){
+				   	alert($("#author").val());
+					   	  $.post("chatServer.php",{//三个参数,URL.data,callback,type
+					   	  	   name:$("#author").val(),
+					           message:$("#msg").val(),
+					           action:"postmsg",
+					           time: timesamp
+					   	  },function(XML){
+					   	  	   alert(2);
+					   	  	   console.log(222)
+					   	  	   $("#messagewindow").empty();
+					   	  	   addMessage(XML);
+					   	  },);
+				   	  return false;
+				   });
+
+
+				  function addMessage(xml){//解析信息
+		                 if($("status",xml).text()=="0") return;
+		                 timesamp=$("time",xml).text();
+		                 $("message",xml).each(function(){
+		                 	var author=$("author",this).text();
+		                 	var content=$("text",this).text();
+		                 	var htmlcode="<strong>"+author+"</strong>:"+content+"<br>";
+		                 	$("#messagewindow").prepend(htmlcode);
+		                 })
+				  }
+				  function updateMsg(){
+                         
+				  }
+		    })
+		  
+
+
+		</script>
+  
+</body>
+</html>

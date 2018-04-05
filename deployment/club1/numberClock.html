@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text-html charset=utf-8">
+	<title>图片时钟</title>
+	<style type="text/css">
+	     #container ul{ width:400px;height: 80px;padding:0;}
+         #container li{
+         	     list-style: none;
+                 float: left;
+         }
+         #container img{
+         	width: 40px;
+         	height: 80px;
+         	margin-right: 10px;
+         
+         }
+
+	</style>
+</head>
+<body>
+<center>
+
+		<div id="container">
+		   <h3>这是一个时钟</h3>
+           <ul>
+				 <li><img src="1.png"></li>
+				 <li><img src="2.png"></li>
+				 <li><img src="inter.png"></li>
+				 <li><img src="3.png"></li>
+				 <li><img src="4.png"></li>
+				 <li><img src="inter.png"></li>
+				 <li><img src="4.png"></li>
+				 <li><img src="6.png"></li>
+
+           </ul>
+		</div>
+</center>
+    <script type="text/javascript">
+         var oImg=document.getElementsByTagName('img');
+         var pre="";
+         var now="";
+         setInterval(function(){
+                oImg[0].src=parseInt(h/10)+".png";
+                oImg[1].src=h%10+".png";
+                oImg[3].src=parseInt(m/10)+".png";
+                oImg[4].src=m%10+".png";
+                oImg[6].src=parseInt(s/10)+".png";
+                oImg[7].src=s%10+".png";
+         },1000);
+
+         (function change(){
+         	 var  oDate=new Date();
+         	 var  pre=oDate.getHours().toString+oDate.getMinutes().toString+oDate.getSeconds().toString;
+         	 console.log(pre);
+                
+
+         })()
+   
+    </script>
+</body>
+</html>
